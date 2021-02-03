@@ -62,37 +62,52 @@
       background: black;
       position: absolute;
       top: 50%;
-      transform-origin: 100%;
-      transform:rotate(90deg);
-      transition: all 0.5s;
+      transform-origin: 100%; /*selects the arrow on the right handsight */
+      transform:rotate(90deg); /*rotate arrows to be placed at 12 */
+      transition: all 0.5s; /*transition animation  */
       transition-timing-function:  cubic-bezier(0.1, 2.7, 0.58, 1)
     }
 
   </style>
 
   <script>
+    //selects each arrow
 const secondHand = document.querySelector('.second-hand');
 const minHand = document.querySelector('.min-hand');
 const hourHand = document.querySelector('.hour-hand')
 
+
 function setDate(){
+
   const now = new Date();
+
+  //seconds selector
   const seconds = now.getSeconds();
-  const secondsDegrees = ((seconds/60) * 360)+90;
+  //converting seconds to degrees and adding the degrees of making it to 12
+  const secondsDegrees = ((seconds/60) * 360) + 90;
+  //setting it on the clock
   secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-  console.log('seconds', seconds);
 
+  //minutes selector
   const mins = now.getMinutes();
+  //converting minutes to degrees and adding the 90 degrees to account for starting from 12
   const minsDegrees = ((mins / 60) * 360) + 90;
+  //applying styles to the clock for minutes
   minHand.style.transform = `rotate(${minsDegrees}deg)`;
-  console.log('minutes',mins)
-
+  
+  //hour selector
   const hours = now.getHours();
+  //converting hours to degrees and accounting for 90 degrees to start from 12
   const hoursDegrees = ((hours / 24) * 360) + 90;
+  //applying styles to the clock for hours
   hourHand.style.transform = `rotate(${hoursDegrees}deg)`
-  console.log('hours', hours)
-}
 
+  //references
+  // console.log('seconds', seconds);
+  // console.log('minutes', mins)
+  // console.log('hours', hours)
+}
+// invocation of clock via setInterval
 setInterval(setDate,1000)
 
   </script>
