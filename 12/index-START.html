@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+<script>
+  const pressedButtons = []
+  const secretCode = 'asilas'
+  function addAndCheck(e){
+      if(pressedButtons.length<secretCode.length){
+      pressedButtons.push(e.key)
+    } else {
+      pressedButtons.shift()
+      pressedButtons.push(e.key)
+    }
+    if (pressedButtons.join('').includes(secretCode)) {
+      console.log("matched");
+      cornify_add();
+    }
+    
+  }
+  window.addEventListener('keyup', addAndCheck )
+
+</script>
+</body>
+</html>
