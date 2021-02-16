@@ -57,8 +57,8 @@ function populateList(plates = [], platesList){
   platesList.innerHTML = plates.map((plate, i) => {
     return `
       <li>
-        <input type="checkbox" data-index=${i} id="items${i}" ${plate.done ? 'checked' : ''} />
-        <label for="item${i}"> ${plate.text}</label>
+        <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
+          <label for="item${i}">${plate.text}</label>
       </li>
     `;
     //joins array of list items to a huge string
@@ -68,10 +68,15 @@ function populateList(plates = [], platesList){
 function toggleDone(e){
   //skip this unless its an input
   if (!e.target.matches('input')) return;
+  //creating element variable
   const el = e.target;
+  //selecting index of the checkbox
   const index = el.dataset.index;
+  //selecting opposit bool 
   items[index].done = !items[index].done;
+  //resave items to localStorage
   localStorage.setItem('items', JSON.stringify(items));
+  //rerenders list
   populateList(items,itemsList);
 }
 
