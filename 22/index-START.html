@@ -37,11 +37,14 @@
     document.body.append(highlight);
 
     function highlightLink(){
+      //coordinates and info of clicked element
+      //bottom, height, left, right, top, width
       const linkCoords = this.getBoundingClientRect();
       
       const coords = {
         width: linkCoords.width,
         height: linkCoords.height,
+        //adjust for scrolling
         top: linkCoords.top + window.scrollY,
         left: linkCoords.left + window.scrollX
       }
