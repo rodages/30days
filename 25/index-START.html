@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+</head>
+<body class="bod">
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+
+<style>
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after { 
+    box-sizing: inherit; 
+  }
+
+  div {
+    width: 100%;
+    padding: 100px;
+  }
+
+  .one {
+    background: thistle;
+  }
+
+  .two {
+    background: mistyrose;
+  }
+
+  .three {
+    background: coral;
+  }
+</style>
+
+<button></button>
+<script>
+const divs = document.querySelectorAll('div');
+
+function logText(e){
+  //e.stopPropogation will stop bubbling - if capture is true will call on the mosst parent element, if false will call on the child
+  // e.stopPropogation()
+  console.log(this.classList.value)
+}
+
+//capture - false(default) will bubble up, true will bubble down.ie. capture down
+//once - will listen for a click, and then will unbind itself
+divs.forEach(div=>div.addEventListener("click",logText, {
+  capture: false,
+  once: true}));
+
+</script>
+</body>
+</html>
